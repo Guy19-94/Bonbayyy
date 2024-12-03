@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Your Cart</h1>
+        <a href="index.html">Back to Shop</a>
+    </header>
+    <main>
+        <div id="cartItems"></div>
+        <h3>Total: $<span id="totalPrice">0</span></h3>
+        <button onclick="clearCart()">Clear Cart</button>
+    </main>
+    <script>
+        // Function to load and display cart items
+        function loadCart() {
+            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            const cartDiv = document.getElementById("cartItems");
+            const totalPriceEl = document.getElementById("totalPrice");
+            let total = 0;
+
+            if (cartItems.length === 0) {
+                cartDiv.innerHTML = "<p>Your cart is empty.</p>";
+            } else {
+                cartDiv.innerHTML = cartItems.map(item => `
+                    <div class="product">
+                        <h2>${item.name}</h2>
+                        <p>Price: $${item.price}</p>
+                    </div>
+                `).join("");
+                total = cartItems.reduce((sum, item) => sum + item.price, 0);
+            }
+            totalPriceEl.textContent = total.toFixed(2);
+        }
+
+        // Function to clear the cart
+        function clearCart() {
+            localStorage.removeItem("cart");
+            loadCart();
+        }
+
+        // Load cart on page load
+        window.onload = loadCart;
+    </script>
+</body>
+</html>

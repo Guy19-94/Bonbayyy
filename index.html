@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced E-Commerce</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Enhanced E-Commerce</h1>
+        <a href="cart.html">View Cart</a>
+        <input type="text" id="searchBar" placeholder="Search products..." oninput="filterProducts()">
+    </header>
+    <nav>
+        <button onclick="filterByCategory('all')">All</button>
+        <button onclick="filterByCategory('electronics')">Electronics</button>
+        <button onclick="filterByCategory('accessories')">Accessories</button>
+    </nav>
+    <main>
+        <div class="product-list" id="productList"></div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
